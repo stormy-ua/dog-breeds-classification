@@ -99,3 +99,11 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+checkpoints/
+data/
+frozen/
+graphs/
+metrics/
+summary/
+.idea/
