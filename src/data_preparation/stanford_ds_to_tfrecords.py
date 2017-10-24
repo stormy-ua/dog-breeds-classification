@@ -1,13 +1,13 @@
-import tensorflow as tf
-import numpy as np
 import os
-import paths
-import pandas as pd
 import xml.etree.ElementTree
-import images_to_tfrecords
-import consts
+
+import tensorflow as tf
+
+from src.common import consts
 import dataset
-import inception
+from src.freezing import inception
+from src.common import paths
+from tf_record_utils import *
 
 images_root_dir = os.path.join(paths.STANFORD_DS_DIR, 'Images')
 annotations_root_dir = os.path.join(paths.STANFORD_DS_DIR, 'Annotation')
@@ -37,10 +37,10 @@ def parse_image(breed_dir, filename):
 
 def build_stanford_example(img_raw, inception_output, one_hot_label, annotation):
     example = tf.train.Example(features=tf.train.Features(feature={
-        'label': images_to_tfrecords._bytes_feature(annotation['breed'].encode()),
-        consts.IMAGE_RAW_FIELD: images_to_tfrecords._bytes_feature(img_raw),
-        consts.LABEL_ONE_HOT_FIELD: images_to_tfrecords._float_feature(one_hot_label),
-        consts.INCEPTION_OUTPUT_FIELD: images_to_tfrecords._float_feature(inception_output)}))
+        'label': bytes_feature(annotation['breed'].encode()),
+        consts.IMAGE_RAW_FIELD: bytes_feature(img_raw),
+        consts.LABEL_ONE_HOT_FIELD: float_feature(one_hot_label),
+        consts.INCEPTION_OUTPUT_FIELD: float_feature(inception_output)}))
 
     return example
 

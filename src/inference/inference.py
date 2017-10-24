@@ -1,22 +1,22 @@
-import tensorflow as tf
-import paths
-import pandas as pd
-from sklearn import preprocessing
-import numpy as np
-import dataset
-import models
-import consts
-import train
 import os
 
+import numpy as np
+import pandas as pd
+import tensorflow as tf
 
-def infer_train(model_name, output_probs, x):
+from src.common import consts
+from src.data_preparation import dataset
+from src.models import denseNN
+from src.common import paths
+
+
+def infer_test(model_name, output_probs, x):
     BATCH_SIZE = 20000
 
     with tf.Session().as_default() as sess:
-        ds, filename = dataset.features_dataset()
+        ds, filename = dataset.test_features_dataset()
         ds_iter = ds.batch(BATCH_SIZE).make_initializable_iterator()
-        sess.run(ds_iter.initializer, feed_dict={filename: paths.TRAIN_TF_RECORDS})
+        sess.run(ds_iter.initializer, feed_dict={filename: paths.TEST_TF_RECORDS})
 
         tf.global_variables_initializer().run()
 
@@ -35,13 +35,14 @@ def infer_train(model_name, output_probs, x):
                 test_batch = sess.run(ds_iter.get_next())
 
                 inception_output = test_batch['inception_output']
-                labels = test_batch['label']
+                ids = test_batch['id']
 
                 pred_probs = sess.run(output_probs, feed_dict={x: inception_output.T})
-                pred_probs_max = pred_probs >= np.max(pred_probs, axis=0)
-                pred_breeds = one_hot_decoder(pred_probs_max.T)
 
-                test_df = pd.DataFrame(data={'pred': pred_breeds, 'actual': labels})
+                #print(pred_probs.shape)
+
+                test_df = pd.DataFrame(data=pred_probs.T, columns=breeds)
+                test_df.index = ids
 
                 if agg_test_df is None:
                     agg_test_df = test_df
@@ -51,16 +52,20 @@ def infer_train(model_name, output_probs, x):
         except tf.errors.OutOfRangeError:
             print('End of the dataset')
 
-        print(agg_test_df.take(range(0, 10)))
+        agg_test_df.to_csv(paths.TEST_PREDICTIONS, index_label='id', float_format='%.17f')
 
-        agg_test_df.to_csv(paths.TRAIN_CONFUSION, index_label='id', float_format='%.17f')
-
-        print('predictions saved to %s' % paths.TRAIN_CONFUSION)
-
+        print('predictions saved to %s' % paths.TEST_PREDICTIONS)
 
 if __name__ == '__main__':
     with tf.Graph().as_default():
         x = tf.placeholder(dtype=tf.float32, shape=(consts.INCEPTION_CLASSES_COUNT, None), name="x")
-        _, output_probs, _, _ = models.denseNNModel(
+        _, output_probs, _, _ = denseNN.denseNNModel(
             x, consts.HEAD_MODEL_LAYERS, gamma=0.01)
-        infer_train(consts.CURRENT_MODEL_NAME, output_probs, x)
+        infer_test(consts.CURRENT_MODEL_NAME, output_probs, x)
+
+
+
+
+
+
+

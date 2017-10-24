@@ -1,10 +1,11 @@
-import tensorflow as tf
-import paths
-import numpy as np
 import os
+
+import tensorflow as tf
 from tensorflow.python.tools import freeze_graph
-import consts
-import models
+
+from src.common import consts
+from src.models import denseNN
+from src.common import paths
 
 
 def _freeze_graph(graph_path, checkpoint_path, output_node_names, output_path):
@@ -63,7 +64,7 @@ if __name__ == '__main__':
                                                   consts.INCEPTION_INPUT_TENSOR,
                                                   consts.INCEPTION_OUTPUT_TENSOR])
 
-        _, output_probs, y, _ = models.denseNNModel(
+        _, output_probs, y, _ = denseNN.denseNNModel(
             tf.reshape(tensors[consts.INCEPTION_OUTPUT_TENSOR], shape=(-1, 1), name=consts.HEAD_INPUT_NODE_NAME),
                 consts.HEAD_MODEL_LAYERS,gamma=0.01)
 

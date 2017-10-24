@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 mkdir -p data
 mkdir -p checkpoints
 mkdir -p frozen

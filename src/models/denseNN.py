@@ -1,38 +1,7 @@
-import tensorflow as tf
-import paths
-import pandas as pd
-from sklearn import preprocessing
 import numpy as np
-import dataset
-import pyprind
-import consts
+import tensorflow as tf
 
-
-def logisticRegressionModel(layers):
-    n_x = layers[0]
-    n_y = layers[1]
-
-    with tf.name_scope("placeholders"):
-        x = tf.placeholder(dtype=tf.float32, shape=(n_x, None), name="x")
-        y = tf.placeholder(dtype=tf.float32, shape=(n_y, None), name="y")
-
-    with tf.name_scope("variables"):
-        W = tf.Variable(np.random.randn(n_y, n_x) / tf.sqrt(n_x * 1.0), dtype=tf.float32, name="W")
-        tf.summary.histogram('W', W)
-        b = tf.Variable(np.zeros((n_y, 1)), dtype=tf.float32, name="b")
-        tf.summary.histogram('b', b)
-
-    with tf.name_scope("linear"):
-        z = tf.matmul(W, x) + b
-
-    with tf.name_scope("cost"):
-        cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=tf.transpose(y), logits=tf.transpose(z)))
-        tf.summary.scalar('cost', cost)
-
-    with tf.name_scope("inference"):
-        output = tf.nn.softmax(z)
-
-    return cost, output, x, y
+from src.common import consts
 
 
 def denseNNModel(input_node, layers, gamma=0.1):
@@ -43,7 +12,7 @@ def denseNNModel(input_node, layers, gamma=0.1):
     Ws = []
 
     with tf.name_scope("placeholders"):
-        #x = tf.placeholder(dtype=tf.float32, shape=(n_x, None), name="x")
+        # x = tf.placeholder(dtype=tf.float32, shape=(n_x, None), name="x")
         y = tf.placeholder(dtype=tf.float32, shape=(n_y, None), name="y")
 
     a = input_node
@@ -67,13 +36,11 @@ def denseNNModel(input_node, layers, gamma=0.1):
     z = tf.matmul(W, a) + b
 
     with tf.name_scope("cost"):
-        cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=tf.transpose(y), logits=tf.transpose(z))) #+\
-            #gamma * tf.reduce_sum([tf.nn.l2_loss(w) for w in Ws])
+        cost = tf.reduce_mean(
+            tf.nn.softmax_cross_entropy_with_logits(labels=tf.transpose(y), logits=tf.transpose(z)))  # +\
+        # gamma * tf.reduce_sum([tf.nn.l2_loss(w) for w in Ws])
         summaries.append(tf.summary.scalar('cost', cost))
 
     output = tf.nn.softmax(z, dim=0, name=consts.OUTPUT_NODE_NAME)
 
     return cost, output, y, summaries
-
-
-

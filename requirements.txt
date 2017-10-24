@@ -5,3 +5,4 @@ matplotlib
 pyprind
 scikit-learn
 scipy
+jupyter

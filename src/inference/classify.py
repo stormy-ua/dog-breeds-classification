@@ -1,23 +1,21 @@
-import tensorflow as tf
-import paths
-import pandas as pd
-from sklearn import preprocessing
-import numpy as np
-import dataset
-import models
-import consts
-import train
-import inception
 import os
-import urllib2
 import sys
-import freeze
+import urllib2
+
+import numpy as np
+import pandas as pd
+import tensorflow as tf
+
+from src.common import consts
+from src.data_preparation import dataset
+from src.freezing import freeze
+from src.common import paths
 
 
 def infer(model_name, img_raw):
     with tf.Graph().as_default(), tf.Session().as_default() as sess:
         tensors = freeze.unfreeze_into_current_graph(
-            os.path.join(paths.FROZEN_MODELS_DIR, model_name+'.pb'),
+            os.path.join(paths.FROZEN_MODELS_DIR, model_name + '.pb'),
             tensor_names=[consts.INCEPTION_INPUT_TENSOR, consts.OUTPUT_TENSOR_NAME])
 
         _, one_hot_decoder = dataset.one_hot_label_encoder()

@@ -1,25 +1,12 @@
-import tensorflow as tf
-import numpy as np
-import os
-import paths
-import dataset
-import inception
-import consts
-import image_utils
 import pyprind
+import tensorflow as tf
 
-
-def _int64_feature(value):
-    return tf.train.Feature(int64_list=tf.train.Int64List(value=[value]))
-
-
-def _float_feature(value):
-    return tf.train.Feature(float_list=tf.train.FloatList(value=value))
-
-
-def _bytes_feature(value):
-    return tf.train.Feature(bytes_list=tf.train.BytesList(value=[value]))
-
+from src.common import consts
+import dataset
+import image_utils
+from src.freezing import inception
+from src.common import paths
+from tf_record_utils import *
 
 def read_example(id, breed):
     image_str = tf.read_file(tf.string_join([paths.TRAIN_DIR, '/', id, paths.JPEG_EXT], separator=''))
@@ -39,10 +26,10 @@ def parse_row(line):
 
 def build_train_example(img, one_hot_label, breed_label, inception_output):
     example = tf.train.Example(features=tf.train.Features(feature={
-        'label': _bytes_feature(breed_label.encode()),
-        consts.IMAGE_RAW_FIELD: _bytes_feature(img),
-        consts.LABEL_ONE_HOT_FIELD: _float_feature(one_hot_label),
-        consts.INCEPTION_OUTPUT_FIELD: _float_feature(inception_output)}))
+        'label': bytes_feature(breed_label.encode()),
+        consts.IMAGE_RAW_FIELD: bytes_feature(img),
+        consts.LABEL_ONE_HOT_FIELD: float_feature(one_hot_label),
+        consts.INCEPTION_OUTPUT_FIELD: float_feature(inception_output)}))
 
     return example
 
@@ -173,9 +160,9 @@ def convert_test(tfrecords_path):
 
                     print('writing %s - %s' % (len(img), id))
                     example = tf.train.Example(features=tf.train.Features(feature={
-                        'id': _bytes_feature(id.encode()),
-                        consts.IMAGE_RAW_FIELD: _bytes_feature(img),
-                        consts.INCEPTION_OUTPUT_FIELD: _float_feature(inception_output)}))
+                        'id': bytes_feature(id.encode()),
+                        consts.IMAGE_RAW_FIELD: bytes_feature(img),
+                        consts.INCEPTION_OUTPUT_FIELD: float_feature(inception_output)}))
 
                     writer.write(example.SerializeToString())
             except tf.errors.OutOfRangeError:

@@ -1,13 +1,13 @@
-import tensorflow as tf
-import paths
-import pandas as pd
-from sklearn import preprocessing
-import numpy as np
-import dataset
-import pyprind
-import consts
-import models
 import os
+
+import pyprind
+import tensorflow as tf
+
+from src.common import consts
+from src.data_preparation import dataset
+from src.models import denseNN
+from src.common import paths
+
 
 def train_dev_split(sess, tf_records_path, dev_set_size=2000, batch_size=64, train_sample_size=2000):
     ds_, filename = dataset.features_dataset()
@@ -80,7 +80,7 @@ if __name__ == '__main__':
         train_sample_y_one_hot = train_sample[consts.LABEL_ONE_HOT_FIELD]
 
         x = tf.placeholder(dtype=tf.float32, shape=(consts.INCEPTION_CLASSES_COUNT, None), name="x")
-        cost, output_probs, y, nn_summaries = models.denseNNModel(
+        cost, output_probs, y, nn_summaries = denseNN.denseNNModel(
             x, consts.HEAD_MODEL_LAYERS, gamma=0.001)
         optimizer = tf.train.AdamOptimizer(learning_rate=LEARNING_RATE).minimize(cost)
 
@@ -117,6 +117,6 @@ if __name__ == '__main__':
             writer.flush()
 
             if epoch % 10 == 0 or epoch == EPOCHS_COUNT:
-                saver.save(sess, os.path.join(paths.CHECKPOINTS_DIR, model_name), latest_filename=model_name+'_latest')
+                saver.save(sess, os.path.join(paths.CHECKPOINTS_DIR, model_name), latest_filename=model_name + '_latest')
 
             bar.update()

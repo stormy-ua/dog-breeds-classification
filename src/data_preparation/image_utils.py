@@ -1,13 +1,10 @@
-import tensorflow as tf
-import paths
-import pandas as pd
-from sklearn import preprocessing
-import numpy as np
-import dataset
-import pyprind
-import consts
-import train
 import matplotlib.pyplot as plt
+import tensorflow as tf
+
+from src.common import consts
+from src.training import train
+from src.common import paths
+
 
 # makes sense to have k = {1, 3}
 def rotate_ccw(img, k = 1):

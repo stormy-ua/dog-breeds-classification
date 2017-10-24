@@ -1,7 +1,8 @@
 import tensorflow as tf
-import paths
+
+from src.common import consts
 import freeze
-import consts
+from src.common import paths
 
 
 def inception_model():
@@ -19,8 +20,7 @@ def inception_model():
 
 if __name__ == '__main__':
     with tf.Session().as_default() as sess:
-        image_raw = tf.read_file('/Users/panarky/Downloads/shuttle1.jpg').eval()
-        image2_raw = tf.read_file('/Users/panarky/Downloads/dog1.jpg').eval()
+        image_raw = tf.read_file('../../images/airedale.jpg').eval()
 
     g = tf.Graph()
     sess = tf.Session(graph=g)

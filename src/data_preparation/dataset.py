@@ -1,9 +1,10 @@
-import tensorflow as tf
-import paths
-import pandas as pd
-from sklearn import preprocessing
 import numpy as np
-import consts
+import pandas as pd
+import tensorflow as tf
+from sklearn import preprocessing
+
+from src.common import consts
+from src.common import paths
 
 
 def get_int64_feature(example, name):
