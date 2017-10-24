@@ -44,3 +44,5 @@ This section describes how to build dog breed classification dense neural networ
 |          cairn  | 0.078033 |
 |   affenpinscher | 0.018711 |
 |           lhasa | 0.018412 |
+
+13. Have a fun!
