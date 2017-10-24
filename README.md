@@ -22,6 +22,7 @@ This section describes how to build dog breed classification dense neural networ
 12. Use the model frozen on the previous step to classify an image either available on the filesystem or downloadable as an HTTP resource: `python classify.py uri http://cdn1-www.dogtime.com/assets/uploads/gallery/shih-tzu-dog-breed-pictures/shih-tzu-breed-picture-6.jpg` `python classify.py file images/airedale.jpg`. In my case the model was training for 25 mins (5000 epochs) and the following sample classification outputs were produced:
  
  ![airedale](images/airedale.jpg)
+ 
  (Image is taken from [http://dogtime.com/dog-breeds/airedale-terrier](http://dogtime.com/dog-breeds/airedale-terrier))
 
 | breed | probability |
@@ -33,6 +34,7 @@ This section describes how to build dog breed classification dense neural networ
 | wire-haired_fox_terrier | 0.000378 |
 
 ![shi-tzu](http://cdn1-www.dogtime.com/assets/uploads/gallery/shih-tzu-dog-breed-pictures/shih-tzu-breed-picture-6.jpg)
+
 (Image is taken from [http://dogtime.com/dog-breeds/shih-tzu](http://dogtime.com/dog-breeds/shih-tzu#/slide/1))
 
 | breed | probability |
