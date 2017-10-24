@@ -4,7 +4,7 @@ This repo is intended to contain a set of scripts and data for reproducing dog b
 
 ![preview](images/preview.png)
 
-#### Setup
+#### Usage
  
 This section describes how to build dog breed classification dense neural network model on top of the pre-trained by Google deep neural network (namely Inception model).
 
