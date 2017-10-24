@@ -19,7 +19,13 @@ This section describes how to build dog breed classification dense neural networ
 9. Train the model: `python train.py`. It might take 30-50 minutes depending on the depth of your model and number of epochs (which could be configured in the train.py script itself). TensorBoard could be used to observe the training process: `tensorboard --logdir=./summary`
 10. Freeze the model: `python freeze.py`. This will bind Inception model with the trained on the previous step "head" model and serialize it as a TensorFlow graph with variables represented as constants. This frozen model will be ready to use for classification tasks.
 11. Produce CSV file with predicted vs actual breed. This could be used to analyze precision on the training data e.g. plot a confusion matrix (see [Confusion.ipynb](Confusion.ipynb)). Result CSV file goes to `metrics/training_confusion.csv`
-12. Use the model frozen on the previous step to classify an image either available on the filesystem or downloadable as an HTTP resource: `python classify.py uri https://github.com/stormy-ua/dog-breeds-classification/raw/master/images/shih-tzu.jpg` `python classify.py file images/airedale.jpg`. In my case the model was training for 25 mins (5000 epochs) and the following sample classification outputs were produced:
+12. Use the model frozen on the previous step to classify an image either available on the filesystem or downloadable as an HTTP resource: 
+
+`python classify.py uri https://raw.githubusercontent.com/stormy-ua/dog-breeds-classification/master/images/shih-tzu.jpg` 
+
+`python classify.py file images/airedale.jpg`
+ 
+ In my case the model was training for 25 mins (5000 epochs) and the following sample classification outputs were produced:
  
  ![airedale](images/airedale.jpg)
  
@@ -33,9 +39,9 @@ This section describes how to build dog breed classification dense neural networ
 | irish_terrier | 0.000635 |
 | wire-haired_fox_terrier | 0.000378 |
 
-![shi-tzu](https://github.com/stormy-ua/dog-breeds-classification/raw/master/images/shih-tzu.jpg)
+![shi-tzu](https://raw.githubusercontent.com/stormy-ua/dog-breeds-classification/master/images/shih-tzu.jpg)
 
-(Image is taken from [http://dogtime.com/dog-breeds/shih-tzu](http://dogtime.com/dog-breeds/shih-tzu#/slide/1))
+(Image is taken from [http://dogtime.com/dog-breeds/shih-tzu](https://dogtime.com/dog-breeds/shih-tzu#/slide/1))
 
 | breed | probability |
 | ------ | ------ |
