@@ -1,10 +1,10 @@
-### Dog Breeds Classification
+## Dog Breeds Classification
 
 This repo is intended to contain a set of scripts and data for reproducing dog breed classification model training, analysis, and inference.
 
 ![preview](images/preview.png)
 
-#### Usage
+### Usage
  
 This section describes how to build dog breed classification dense neural network model on top of the pre-trained by Google deep neural network (namely Inception model).
 
@@ -48,8 +48,8 @@ This section describes how to build dog breed classification dense neural networ
 
 13. Have a fun!
 
-#### Kagle Dog Breed Classification Competition
+### Kagle Dog Breed Classification Competition
 
 This model ranked #3 in the [Kaggle's Dog Breed Classification Challenge](https://www.kaggle.com/c/dog-breed-identification). 
 
-![kaggle](images/kaggle_leaderboard.png)
+![kaggle](images/kaggle_leaderboard.jpg)
