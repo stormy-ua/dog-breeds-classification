@@ -73,7 +73,7 @@ This section describes how to build dog breed classification dense neural networ
 |japanese_spaniel | 0.000936 |
 
 
-These examples also available in the [Inference](Inference.ipynb) Python notebook.
+These examples also available in the [Inference.ipynb](Inference.ipynb) Python notebook.
 
 Have a fun!
 
