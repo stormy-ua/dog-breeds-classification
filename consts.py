@@ -11,7 +11,7 @@ HEAD_INPUT_NODE_NAME = 'x'
 HEAD_INPUT_TENSOR_NAME = HEAD_INPUT_NODE_NAME + ':0'
 
 # name of the model being referenced by all other scripts
-CURRENT_MODEL_NAME = 'stanford_6_64_0001'
+CURRENT_MODEL_NAME = 'stanford_5_64_0001'
 # sets up number of layers and number of units in each layer for
 # the "head" dense neural network stacked on top of the Inception
 # pre-trained model.

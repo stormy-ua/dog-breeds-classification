@@ -33,16 +33,17 @@ This section describes how to build dog breed classification dense neural networ
 | irish_terrier | 0.000635 |
 | wire-haired_fox_terrier | 0.000378 |
 
-![shi-tzu](http://cdn1-www.dogtime.com/assets/uploads/gallery/shih-tzu-dog-breed-pictures/shih-tzu-breed-picture-6.jpg)
+![shi-tzu](http://cdn2-www.dogtime.com/assets/uploads/gallery/shih-tzu-dog-breed-pictures/shih-tzu-breed-picture-8.jpg)
 
 (Image is taken from [http://dogtime.com/dog-breeds/shih-tzu](http://dogtime.com/dog-breeds/shih-tzu#/slide/1))
 
 | breed | probability |
 | ------ | ------ |
-| brabancon_griffon | 0.460838 |
-|        shih-tzu | 0.348138 |
-|          cairn  | 0.078033 |
-|   affenpinscher | 0.018711 |
-|           lhasa | 0.018412 |
+|        shih-tzu | 0.752834 |
+|           lhasa | 0.234748 |
+| tibetan_terrier | 0.007598 |
+|     maltese_dog | 0.000969 |
+|japanese_spaniel | 0.000936 |
+
 
 13. Have a fun!
