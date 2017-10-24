@@ -28,17 +28,25 @@ def infer(model_name, img_raw):
         # print(breeds)
 
         df = pd.DataFrame(data={'prob': probs.reshape(-1), 'breed': breeds})
-        print(df.sort_values(['prob'], ascending=False).take(range(5)))
 
 
-if __name__ == '__main__':
-    src = sys.argv[1]
-    path = sys.argv[2] # uri to a dog image to classify
-    if src == 'uri':
+        return df.sort_values(['prob'], ascending=False)
+
+
+def classify(resource_type, path):
+    if resource_type == 'uri':
         response = urllib2.urlopen(path)
         img_raw = response.read()
     else:
         with open(path, 'r') as f:
             img_raw = f.read()
 
-    infer(consts.CURRENT_MODEL_NAME, img_raw)
+    return infer(consts.CURRENT_MODEL_NAME, img_raw)
+
+if __name__ == '__main__':
+    src = sys.argv[1]
+    path = sys.argv[2] # uri to a dog image to classify
+    probs = classify(src, path)
+
+    print(probs.sort_values(['prob'], ascending=False).take(range(5)))
+
