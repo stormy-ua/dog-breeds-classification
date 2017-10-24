@@ -6,3 +6,4 @@ pyprind
 scikit-learn
 scipy
 jupyter
+Pillow

@@ -77,6 +77,14 @@ These examples also available in the [Inference.ipynb](Inference.ipynb) Python n
 
 Have a fun!
 
+### Run in Docker
+
+The already pre-built model w/ all the scripts and Python notebooks for inference is available in the docker container. Run the container:
+
+`docker run -p 8888:8888 -p 6006:6006 kirillpanarin/dog_breed_classification`
+
+Navigate a browser to `http://localhost:8888/notebooks/Inference.ipynb` and you will be all set for doing inference against real-life dog images.
+
 ### Kagle Dog Breed Classification Competition
 
 This model ranked #3 in the [Kaggle's Dog Breed Classification Challenge](https://www.kaggle.com/c/dog-breed-identification). 
