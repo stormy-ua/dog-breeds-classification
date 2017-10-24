@@ -47,3 +47,9 @@ This section describes how to build dog breed classification dense neural networ
 
 
 13. Have a fun!
+
+#### Kagle Dog Breed Classification Competition
+
+This model ranked #3 in the [Kaggle's Dog Breed Classification Challenge](https://www.kaggle.com/c/dog-breed-identification). 
+
+![kaggle](images/kaggle_leaderboard.png)
