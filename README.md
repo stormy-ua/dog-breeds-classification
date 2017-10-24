@@ -77,9 +77,9 @@ These examples also available in the [Inference.ipynb](Inference.ipynb) Python n
 
 Have a fun!
 
-### Run in Docker
+### Running in Docker
 
-The already pre-built model w/ all the scripts and Python notebooks for inference is available in the docker container. Run the container:
+The already pre-built model w/ all the scripts and Python notebooks for inference are available in the docker container. Run the container:
 
 `docker run -p 8888:8888 -p 6006:6006 kirillpanarin/dog_breed_classification`
 
