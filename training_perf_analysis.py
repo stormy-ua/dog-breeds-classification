@@ -60,8 +60,7 @@ def infer_train(model_name, output_probs, x):
 
 if __name__ == '__main__':
     with tf.Graph().as_default():
-        # _, output_probs, x, _, _ = models.logisticRegressionModel([2048, consts.CLASSES_COUNT])
         x = tf.placeholder(dtype=tf.float32, shape=(consts.INCEPTION_CLASSES_COUNT, None), name="x")
         _, output_probs, _, _ = models.denseNNModel(
-            x, [consts.INCEPTION_CLASSES_COUNT, 1024, consts.CLASSES_COUNT], gamma=0.01)
+            x, consts.HEAD_MODEL_LAYERS, gamma=0.01)
         infer_train(consts.CURRENT_MODEL_NAME, output_probs, x)

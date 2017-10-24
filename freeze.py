@@ -65,8 +65,7 @@ if __name__ == '__main__':
 
         _, output_probs, y, _ = models.denseNNModel(
             tf.reshape(tensors[consts.INCEPTION_OUTPUT_TENSOR], shape=(-1, 1), name=consts.HEAD_INPUT_NODE_NAME),
-            [consts.INCEPTION_CLASSES_COUNT, 1024, consts.CLASSES_COUNT],
-            gamma=0.01)
+                consts.HEAD_MODEL_LAYERS,gamma=0.01)
 
         tf.global_variables_initializer().run()
 

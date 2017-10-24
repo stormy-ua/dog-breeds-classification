@@ -62,7 +62,7 @@ if __name__ == '__main__':
     EPOCHS_COUNT = 5000
     LEARNING_RATE = 0.0001
 
-    model_name = make_model_name(prefix=consts.CURRENT_MODEL_NAME, batch_size=BATCH_SIZE, learning_rate=LEARNING_RATE)
+    model_name = consts.CURRENT_MODEL_NAME
 
     with tf.Graph().as_default() as g, tf.Session().as_default() as sess:
         next_train_batch, get_dev_ds, get_train_sample_ds = \
@@ -81,7 +81,7 @@ if __name__ == '__main__':
 
         x = tf.placeholder(dtype=tf.float32, shape=(consts.INCEPTION_CLASSES_COUNT, None), name="x")
         cost, output_probs, y, nn_summaries = models.denseNNModel(
-            x, [consts.INCEPTION_CLASSES_COUNT, 1024, consts.CLASSES_COUNT], gamma=0.001)
+            x, consts.HEAD_MODEL_LAYERS, gamma=0.001)
         optimizer = tf.train.AdamOptimizer(learning_rate=LEARNING_RATE).minimize(cost)
 
         dev_error_eval = error(x, output_probs, name='dev_error')

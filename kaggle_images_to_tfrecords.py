@@ -186,6 +186,6 @@ def convert_test(tfrecords_path):
         print('Finished')
 
 
-    # if __name__ == '__main__':
-    # convert_train(paths.TRAIN_TF_RECORDS)
-    # convert_test(paths.TEST_TF_RECORDS)
+#if __name__ == '__main__':
+    #convert_train(paths.TRAIN_TF_RECORDS)
+    #convert_test(paths.TEST_TF_RECORDS)
