@@ -4,9 +4,9 @@ import numpy as np
 import pandas as pd
 import tensorflow as tf
 
-import consts
-import dataset
-import models
+from src.common import consts
+from src.data_preparation import dataset
+from src.models import denseNN
 from src.common import paths
 
 
@@ -61,6 +61,6 @@ def infer_train(model_name, output_probs, x):
 if __name__ == '__main__':
     with tf.Graph().as_default():
         x = tf.placeholder(dtype=tf.float32, shape=(consts.INCEPTION_CLASSES_COUNT, None), name="x")
-        _, output_probs, _, _ = models.denseNNModel(
+        _, output_probs, _, _ = denseNN.denseNNModel(
             x, consts.HEAD_MODEL_LAYERS, gamma=0.01)
         infer_train(consts.CURRENT_MODEL_NAME, output_probs, x)

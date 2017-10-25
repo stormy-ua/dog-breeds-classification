@@ -36,7 +36,7 @@ This section describes how to build dog breed classification dense neural networ
 
 ### Analyze
 
-1. Produce CSV file with predicted vs actual breed. This could be used to analyze precision on the training data e.g. plot a confusion matrix (see [Confusion.ipynb](Confusion.ipynb)). Result CSV file goes to `metrics/training_confusion.csv`
+1. Produce CSV file with predicted vs actual breed. This could be used to analyze precision on the training data e.g. plot a confusion matrix (see [Confusion.ipynb](Confusion.ipynb)). Result CSV file goes to `metrics/training_confusion.csv`: `python -m src.analysis.training_perf_analysis`
 
 ### Infer
 

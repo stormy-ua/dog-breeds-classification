@@ -10,6 +10,9 @@ OUTPUT_TENSOR_NAME = OUTPUT_NODE_NAME + ':0'
 HEAD_INPUT_NODE_NAME = 'x'
 HEAD_INPUT_TENSOR_NAME = HEAD_INPUT_NODE_NAME + ':0'
 
+DEV_SET_SIZE = 3000
+TRAIN_SAMPLE_SIZE = 3000
+
 # name of the model being referenced by all other scripts
 CURRENT_MODEL_NAME = 'stanford_5_64_0001'
 # sets up number of layers and number of units in each layer for

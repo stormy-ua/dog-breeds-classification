@@ -57,8 +57,6 @@ def make_model_name(prefix, batch_size, learning_rate):
 
 if __name__ == '__main__':
     BATCH_SIZE = 64
-    DEV_SET_SIZE = 500
-    TRAIN_SAMPLE_SIZE = 1000
     EPOCHS_COUNT = 5000
     LEARNING_RATE = 0.0001
 
@@ -67,9 +65,9 @@ if __name__ == '__main__':
     with tf.Graph().as_default() as g, tf.Session().as_default() as sess:
         next_train_batch, get_dev_ds, get_train_sample_ds = \
             train_dev_split(sess, paths.TRAIN_TF_RECORDS,
-                            dev_set_size=DEV_SET_SIZE,
+                            dev_set_size=consts.DEV_SET_SIZE,
                             batch_size=BATCH_SIZE,
-                            train_sample_size=TRAIN_SAMPLE_SIZE)
+                            train_sample_size=consts.TRAIN_SAMPLE_SIZE)
 
         dev_set = sess.run(get_dev_ds)
         dev_set_inception_output = dev_set[consts.INCEPTION_OUTPUT_FIELD]
@@ -84,7 +82,7 @@ if __name__ == '__main__':
             x, consts.HEAD_MODEL_LAYERS, gamma=0.001)
         optimizer = tf.train.AdamOptimizer(learning_rate=LEARNING_RATE).minimize(cost)
 
-        dev_error_eval = error(x, output_probs, name='dev_error')
+        dev_error_eval = error(x, output_probs, name='test_error')
         train_error_eval = error(x, output_probs, name='train_error')
 
         nn_merged_summaries = tf.summary.merge(nn_summaries)
