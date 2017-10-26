@@ -8,6 +8,7 @@ TEST_DIR = os.path.join(DATA_ROOT, 'test')
 TRAIN_TF_RECORDS = os.path.join(DATA_ROOT, 'stanford.tfrecords')
 TEST_TF_RECORDS = os.path.join(DATA_ROOT, 'dogs_test.tfrecords')
 LABELS = os.path.join(DATA_ROOT, 'train', 'labels.csv')
+BREEDS = os.path.join(DATA_ROOT, 'breeds.csv')
 IMAGENET_GRAPH_DEF = 'frozen/inception/classify_image_graph_def.pb'
 TEST_PREDICTIONS = 'predictions.csv'
 METRICS_DIR = 'metrics'

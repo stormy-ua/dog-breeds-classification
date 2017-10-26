@@ -17,6 +17,7 @@ COPY ./images /app/images
 COPY ./checkpoints /app/checkpoints
 COPY ./frozen /app/frozen
 COPY ./data/train/labels.csv /app/data/train/
+COPY ./data/*.tfrecords /app/data/
 COPY ./*.ipynb /app/
 COPY ./summary /app/summary
 

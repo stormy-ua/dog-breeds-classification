@@ -59,7 +59,7 @@ def test_features_dataset():
 
 
 def one_hot_label_encoder():
-    train_Y_orig = pd.read_csv(paths.LABELS, dtype={'breed': np.str})
+    train_Y_orig = pd.read_csv(paths.BREEDS, dtype={'breed': np.str})
     lb = preprocessing.LabelBinarizer()
     lb.fit(train_Y_orig['breed'])
 
