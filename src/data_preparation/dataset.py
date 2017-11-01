@@ -25,7 +25,7 @@ def read_tf_record(record):
         features={
             consts.IMAGE_RAW_FIELD: tf.FixedLenFeature([], tf.string),
             'label': tf.FixedLenFeature([], tf.string),
-            consts.LABEL_ONE_HOT_FIELD: tf.FixedLenFeature([120], tf.float32),
+            consts.LABEL_ONE_HOT_FIELD: tf.FixedLenFeature([consts.CLASSES_COUNT], tf.float32),
             consts.INCEPTION_OUTPUT_FIELD: tf.FixedLenFeature([2048], tf.float32)
         })
     return features
